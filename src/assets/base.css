@@ -1,53 +1,68 @@
-/* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  /* Colors */
+  --gs-white: #ffffff;
+  --gs-white-soft: #F9F9F9;
+  --gs-white-mute: #B0B0B0;
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  --gs-black: #212121;
 
-  --vt-c-indigo: #2c3e50;
+  --gs-blue: #2E3A8C;
+  --gs-blue-mute: rgba(var(--gs-blue), 0.8);
+  
+  --gs-green: #3B755F;
+  --gs-green-soft: #AFC6BD;
+  
+  --gs-beige: #F2EBDB;
 
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  /* Typography */
+  --gs-title-font-size: 30px;
+  --gs-title-font-weight: 700;
 
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --gs-subtitle-font-size: 18px;
+  --gs-subtitle-font-weight: 700;
+
+  --gs-text-font-size: 14px;
+  --gs-text-font-weight: 400;
+
+  --gs-subtext-font-size: 12px;
+  --gs-subtext-font-weight: 400;
+
+  --gs-link-font-size: 14px;
+  --gs-link-font-weight: 700;
+
+  /* Sizing */
+  --gs-border-radius: 6px;
 }
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
+  --color-background: var(--gs-white-soft);
+  --color-background-mute: var(--gs-white-mute);
 
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
+  --color-background-accent-1: var(--gs-blue);
+  --color-background-accent-2: var(--gs-green);
+  --color-background-accent-3: var(--gs-beige);
 
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
+  --color-text: var(--gs-black);
+  --color-text-negative: var(--gs-white);
+  --color-text-alt: var(--gs-green);
 
-  --section-gap: 160px;
-}
+  --color-blue: var(--gs-blue);
+  --color-green: var(--gs-green);
+  --color-beige: var(--gs-beige);
+  --color-white: var(--gs-white);
+  --color-black: var(--gs-black);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
-
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
-
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
-  }
+  --title-size: var(--gs-title-font-size);
+  --title-weight: var(--gs-title-font-weight);
+  --subtitle-size: var(--gs-subtitle-font-size);
+  --subtitle-weight: var(--gs-subtitle-font-weight);
+  --text-size: var(--gs-text-font-size);
+  --text-weight: var(--gs-text-font-weight);
+  --subtext-size: var(--gs-subtext-font-size);
+  --subtext-weight: var(--gs-subtext-font-weight);
+ 
+  --border-radius: var(--gs-border-radius);
 }
 
 *,
@@ -66,20 +81,12 @@ body {
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  font-size: 15px;
+  font-size: var(--text-size);
+  font-family: "Cabin", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: var(--text-weight);
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,44 +1,68 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import {loadWidgets, widgets} from './store.js'
+import Widget from './components/Widget.vue'
+import type { Widget as WidgetType } from './types'
+
+onMounted(loadWidgets)
+</script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo_with_lettering.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <h3>Per product widgets</h3>
+    <hr />
   </header>
 
   <main>
-    Hello world
+    <Widget v-for="widget in widgets" :key="widget.id" />
   </main>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
   line-height: 1.5;
+  margin-bottom: 20px;
+
+  h3 {
+    font-weight: bold;
+    font-size: var(--title-size);
+    font-weight: var(--title-weight);
+    margin-bottom: 12px;
+  }
+
+  hr {
+    width: 100%;
+    background: var(--color-background-mute);
+    height: 2px;
+    border: none;
+  }
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+main {
+  width: 100%;
+  display: flex;
+  width: 100%;
+  gap: 36px;
+  padding: 0 20px;
 }
 
 @media (min-width: 1024px) {
   header {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    align-items: start;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 50px;
+    place-items: center;
+    align-items: start;
+    padding: 0;
   }
 }
 </style>
