@@ -19,7 +19,7 @@ const subtitle = computed(() => WIDGET_TEXT[widget.value.type].subtitle)
       class="widget-header"
       :style="{ color: WIDGET_TEXT_COLOR_CSS_VAR[widget.selectedColor], backgroundColor: `var(--color-${widget.selectedColor})` }"
       >
-      <LogoIcon :style="{ color: WIDGET_TEXT_COLOR_CSS_VAR[widget.selectedColor] }"/>
+      <LogoIcon class="logo" :style="{ fill: WIDGET_TEXT_COLOR_CSS_VAR[widget.selectedColor] }"/>
       <div class="text-content">
         <p class="subtext">{{ subtitle }}</p>
         <h5>{{ title }}</h5>
@@ -64,6 +64,12 @@ header.widget-header {
   padding-bottom: 10px;
   padding-right: 14px;
   padding-left: 12px;
+
+  .logo {
+    width: 40px;
+    height: auto;
+    margin-right: 12px;
+  }
 
   .text-content {
     .subtext {

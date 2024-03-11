@@ -41,6 +41,7 @@ header {
 main {
   width: 100%;
   display: flex;
+  flex-direction: column;
   width: 100%;
   gap: 36px;
   padding: 0 20px;

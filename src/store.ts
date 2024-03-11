@@ -14,5 +14,4 @@ export const loadWidgets = async () => {
   }
 
   widgetData.value = await resp.json()
-  console.log("sup", widgetData.value)
 }
