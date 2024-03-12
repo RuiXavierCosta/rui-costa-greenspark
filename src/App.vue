@@ -2,20 +2,27 @@
 import { onMounted } from 'vue'
 import {loadWidgets, widgets} from './store.js'
 import Widget from './components/Widget.vue'
+import WidgetSettings from './components/WidgetSettings.vue'
 import type { Widget as WidgetType } from './types'
 
 onMounted(loadWidgets)
+const isProfile: boolean = window.location.pathname === '/profile'
 </script>
 
 <template>
   <header>
-    <h3>Per product widgets</h3>
+    <h3 v-if="isProfile">Profile example</h3>
+    <h3 v-else>Per product widgets</h3>
     <hr />
   </header>
 
   <main>
-    <Widget v-for="widget in widgets" :key="widget.id" :id="widget.id" />
+    <div class="widget-wrapper" v-for="widget in widgets" :key="widget.id">
+      <Widget :class="{ widget: !isProfile }" :id="widget.id" />
+      <WidgetSettings v-if="!isProfile" :id="widget.id" />
+    </div>
   </main>
+  <a v-if="!isProfile" class="floating-button" href="/profile" target="_blank">View Profile</a>
 </template>
 
 <style scoped lang="scss">
@@ -47,6 +54,14 @@ main {
   padding: 0 20px;
 }
 
+.widget-wrapper {
+  width: 100%;
+
+  .widget {
+    margin-bottom: 20px;
+  }
+}
+
 @media (min-width: 1024px) {
   header {
     width: 100%;
@@ -64,6 +79,30 @@ main {
     place-items: center;
     align-items: start;
     padding: 0;
+  }
+}
+
+.floating-button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  border-radius: 100px;
+  text-align: center;
+  padding: 8px 16px;
+  line-height: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d2d2d;
+  background-color: #47d18f;
+  border: 2px solid transparent;
+  &:hover, &:focus {
+    border-color: #3b755f;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 8px 32px;
+    line-height: 24px;
+    font-size: 20px;
   }
 }
 </style>

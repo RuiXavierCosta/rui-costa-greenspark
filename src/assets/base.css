@@ -26,8 +26,8 @@
   --gs-subtext-font-size: 12px;
   --gs-subtext-font-weight: 400;
 
-  --gs-link-font-size: 14px;
-  --gs-link-font-weight: 700;
+  --gs-anchor-font-size: 14px;
+  --gs-anchor-font-weight: 700;
 
   /* Sizing */
   --gs-border-radius: 6px;
@@ -45,6 +45,7 @@
   --color-text: var(--gs-black);
   --color-text-negative: var(--gs-white);
   --color-text-alt: var(--gs-green);
+  --color-anchor: var(--gs-green);
   --color-border-grey: var(--gs-white-mute);
   --color-border-black: var(--gs-black);
   --color-border-green-soft: var(--gs-green-soft);
@@ -66,6 +67,8 @@
   --text-weight: var(--gs-text-font-weight);
   --subtext-size: var(--gs-subtext-font-size);
   --subtext-weight: var(--gs-subtext-font-weight);
+  --anchor-size: var(--gs-anchor-font-size);
+  --anchor-weight: var(--gs-anchor-font-weight);
   
   --border-radius: var(--gs-border-radius);
   

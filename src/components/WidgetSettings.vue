@@ -10,8 +10,15 @@ const widget = computed(() => widgets.value.find(w => w.id === id))
 <template>
   <div class="settings">
     <div class="setting">
-    <legend>Link to Public Profile <img class="tooltip" alt="This widget links directly to your public profile so that you can easily share your impact with your customers. Turn it off here if you do not want the badge to link to it." src="../assets/info_tooltip.svg" /></legend>
-    <input v-model="widget.linked" class="checkbox-input" type="checkbox" :name="`link-to-public-${id}`">
+      <legend class="tooltip-wrapper">
+        Link to Public Profile
+        <img class="tooltip-trigger" alt="This widget links directly to your public profile so that you can easily share your impact with your customers. Turn it off here if you do not want the badge to link to it." src="../assets/info_tooltip.svg" />
+        <div class="tooltip">
+          <p>This widget links directly to your public profile so that you can easily share your impact with your customers. Turn it off here if you do not want the badge to link to it.</p>
+          <a href="/profile" target="_blank">View Public Profile</a>
+        </div>
+      </legend>
+      <input v-model="widget.linked" class="checkbox-input" type="checkbox" :name="`link-to-public-${id}`">
     </div>
     
     <div class="setting">
@@ -228,7 +235,59 @@ const widget = computed(() => widgets.value.find(w => w.id === id))
   }
 }
 
-.widget {
-  width: 100%;
+@keyframes fade-out {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  99% {
+    display: block;
+    opacity: 0.00001;
+  }
+  100% {
+    display: none;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0.000001;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Informational tooltip that appears when the user hovers the "i" after "Link to Public Profile"
+.tooltip-wrapper {
+  position: relative;
+}
+
+.tooltip {
+  width: auto;
+  min-width: 248px;
+  padding: 24px 16px;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background: white;
+  border-radius: 4px;
+  text-align: center;
+  color: var(--color-text);
+  display: none;
+  p {
+    margin: 0px 0px 12px;
+  }
+}
+
+.tooltip:not(:hover) {
+  animation: 200ms fade-out forwards;
+}
+
+.tooltip-trigger:hover + .tooltip,
+.tooltip:hover {
+  display: block;
+  animation: 200ms fade-in forwards;
 }
 </style>
