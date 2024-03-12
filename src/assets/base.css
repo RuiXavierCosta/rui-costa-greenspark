@@ -46,6 +46,8 @@
   --color-text: var(--gs-black);
   --color-text-negative: var(--gs-white);
   --color-text-alt: var(--gs-green);
+  --color-border-grey: var(--gs-white-mute);
+  --color-border-black: var(--gs-black);
 
   --color-blue: var(--gs-blue);
   --color-green: var(--gs-green);
@@ -63,6 +65,9 @@
   --subtext-weight: var(--gs-subtext-font-weight);
  
   --border-radius: var(--gs-border-radius);
+
+  --input-hover-shadow: color-mix(in srgb, var(--gs-green-soft) 50%, transparent);
+  --input-active-color: var(--gs-green);
 }
 
 *,

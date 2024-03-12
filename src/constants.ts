@@ -18,9 +18,9 @@ type WidgetTextColor = {
 }
 
 export const WIDGET_TEXT_COLOR_CSS_VAR: WidgetTextColor = {
-    "white": "var(--color-text-alt)",
-    "black": "var(--color-text-negative)",
-    "blue": "var(--color-text-negative)",
-    "green": "var(--color-text-negative)",
-    "beige": "var(--color-text-alt)",
+    "white": "green",
+    "black": "white",
+    "blue": "white",
+    "green": "white",
+    "beige": "green",
 }
