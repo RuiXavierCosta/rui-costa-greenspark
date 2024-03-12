@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import {loadWidgets, widgets} from './store.js'
+import { loadWidgets, widgets } from './store.js'
 import Widget from './components/Widget.vue'
 import WidgetSettings from './components/WidgetSettings.vue'
 import type { Widget as WidgetType } from './types'
