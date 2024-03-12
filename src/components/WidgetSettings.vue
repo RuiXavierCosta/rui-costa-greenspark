@@ -46,16 +46,19 @@ const widget = computed(() => widgets.value.find(w => w.id === id))
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
 
     input[type="radio"] {
+      cursor: pointer;
       appearance: none;
       margin: 0;
       width: 16px;
       height: 16px;
-      border: none;
+      border-color: transparent;
 
       width: 16px;
       height: 16px;
+      transition: 200ms border-color;
 
       &:checked {
         border: 1.5px solid var(--color-border-grey)
@@ -98,21 +101,17 @@ const widget = computed(() => widgets.value.find(w => w.id === id))
       position: relative;
       margin: 0;
       border: none;
+      cursor: pointer;
     }
 
     input[type="checkbox"].checkbox-input {
-      appearance: none;
-      position: relative;
-      margin: 0;
-      width: 18px;
-      height: 18px;
+      --transition-duration: 200ms;
       display: grid;
       place-content: center;
       z-index: 0;
-      cursor: pointer;
 
       &:hover::after {
-        background-color:  var(--input-hover-shadow);
+        background-color: var(--input-hover-shadow);
       }
 
       /* Checkbox hover shadow effect */
@@ -127,7 +126,7 @@ const widget = computed(() => widgets.value.find(w => w.id === id))
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;
-        transition: 200ms background-color;
+        transition: var(--transition-duration) background-color;
       }
 
       /* Checkbox checkmark */
@@ -143,15 +142,79 @@ const widget = computed(() => widgets.value.find(w => w.id === id))
         width: 18px;
         height: 18px;
         border: 2px solid var(--color-border-black);
-        transition: 200ms border;
         border-radius: 4px;
         background-color: transparent;
         clip-path: none;
-        transition: 200ms background-color;
+        transition: var(--transition-duration) background-color, border;
       }
     }
 
     input[type="checkbox"].toggle-input {
+      --border-width: 1px;
+      --transition-duration: 200ms;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      z-index: 0;
+      width: 40px;
+      height: 20px;
+      border: var(--border-width) solid var(--color-border-green-soft);
+      box-shadow: inset 0 0 6px var(--input-inset-shadow-color);
+      border-radius: 30px;
+      background-color: transparent;
+      transition: var(--transition-duration) background-color, box-shadow, border-color;
+      
+      /* Checkbox is selected, so move ::before to left side */
+      &:checked {
+        background-color: var(--color-background-accent-2);
+        border: var(--border-width) solid var(--color-border-grey);
+        box-shadow: none;
+        
+        &::before {
+          transform: translateX(calc(100% - calc(var(--border-width) * -1)));
+          border: var(--border-width) solid var(--color-border-green);
+        }
+      }
+
+      --nob-size: 20px;
+      &::before {
+        content: "";
+        width: var(--nob-size);
+        height: var(--nob-size);
+        position: relative;
+        z-index: 2;
+        transform: translateX(calc(var(--border-width) * -1));
+        background-color: white;
+        border: 1px solid var(--color-border-beige);
+        border-radius: 100%;
+        transition: var(--transition-duration) transform, border, background-color;
+      }
+
+      /* Checkbox hover shadow effect */
+      --shadow-size: 32px;
+      --shadow-displacement-left: calc((var(--border-width) * -1) - ((var(--shadow-size) - var(--nob-size)) / 2));
+      --shadow-displacement-right: calc(100% - var(--border-width) - (var(--shadow-size) / 2));
+      &:hover::after {
+        background-color: var(--input-hover-shadow);
+      }
+      &:checked::after {
+        transform: translateX(var(--shadow-displacement-right)) translateY(-50%);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: var(--shadow-size);
+        height: var(--shadow-size);
+        border-radius: 100%;
+        background-color: transparent;
+        top: 50%;
+        right: auto;
+        left: 0;
+        transform: translateX(var(--shadow-displacement-left)) translateY(-50%);
+        transition: var(--transition-duration) transform, background-color;
+      }
     }
 
     fieldset.badge-colour-selection {

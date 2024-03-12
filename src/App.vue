@@ -14,7 +14,7 @@ onMounted(loadWidgets)
   </header>
 
   <main>
-    <Widget v-for="widget in widgets" :key="widget.id" />
+    <Widget v-for="widget in widgets" :key="widget.id" :id="widget.id" />
   </main>
 </template>
 

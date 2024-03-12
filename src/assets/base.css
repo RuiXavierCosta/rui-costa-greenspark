@@ -7,7 +7,6 @@
   --gs-black: #212121;
 
   --gs-blue: #2E3A8C;
-  --gs-blue-mute: rgba(var(--gs-blue), 0.8);
   
   --gs-green: #3B755F;
   --gs-green-soft: #AFC6BD;
@@ -48,6 +47,9 @@
   --color-text-alt: var(--gs-green);
   --color-border-grey: var(--gs-white-mute);
   --color-border-black: var(--gs-black);
+  --color-border-green-soft: var(--gs-green-soft);
+  --color-border-green: var(--gs-green);
+  --color-border-beige: var(--gs-beige);
 
   --color-blue: var(--gs-blue);
   --color-green: var(--gs-green);
@@ -55,6 +57,7 @@
   --color-white: var(--gs-white);
   --color-black: var(--gs-black);
 
+  
   --title-size: var(--gs-title-font-size);
   --title-weight: var(--gs-title-font-weight);
   --subtitle-size: var(--gs-subtitle-font-size);
@@ -63,9 +66,10 @@
   --text-weight: var(--gs-text-font-weight);
   --subtext-size: var(--gs-subtext-font-size);
   --subtext-weight: var(--gs-subtext-font-weight);
- 
+  
   --border-radius: var(--gs-border-radius);
-
+  
+  --input-inset-shadow-color: color-mix(in srgb, var(--gs-white-mute) 30%, transparent);
   --input-hover-shadow: color-mix(in srgb, var(--gs-green-soft) 50%, transparent);
   --input-active-color: var(--gs-green);
 }

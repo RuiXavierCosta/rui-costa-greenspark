@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, getCurrentInstance } from "vue"
+import { computed, defineProps } from "vue"
 
 import { WIDGET_TEXT, WIDGET_TEXT_COLOR_CSS_VAR } from "../constants"
 import LogoIcon from "./icons/LogoIcon.vue"
@@ -7,9 +7,10 @@ import WidgetSettings from './WidgetSettings.vue'
 import { widgets } from "../store.js"
 import { Widget } from "../types"
 
-const { key } = getCurrentInstance().vnode
 
-const widget = computed(() => widgets.value.find(w => w.id === key))
+const { id } = defineProps({ id: Number })
+
+const widget = computed(() => widgets.value.find(w => w.id === id))
 const title = computed(() => WIDGET_TEXT[widget.value.type].title(widget.value.amount))
 const subtitle = computed(() => WIDGET_TEXT[widget.value.type].subtitle)
 </script>
@@ -32,7 +33,7 @@ const subtitle = computed(() => WIDGET_TEXT[widget.value.type].subtitle)
         <h5>{{ title }}</h5>
       </div>
     </header>
-    <WidgetSettings :id="key" />
+    <WidgetSettings :id="id" />
   </div>
 </template>
 
@@ -49,6 +50,7 @@ header.widget-header {
   padding-bottom: 10px;
   padding-right: 14px;
   padding-left: 12px;
+  transition: 200ms background-color, color, border-color;
 
   .logo {
     width: 40px;
