@@ -5,6 +5,13 @@ import type { Widget } from './types'
 const widgetData = ref<Widget[]>([])
 export const widgets = reactive(widgetData)
 
+export const activateWidget = (id: number): void => {
+  widgets.value.forEach(w => {
+    if(w.id === id) return w.active = true
+    w.active = false
+  })
+}
+
 export const loadWidgets = async () => {
   // fetch widget info for current user
   const resp = await fetch("https://api.mocki.io/v2/016d11e8/product-widgets")
