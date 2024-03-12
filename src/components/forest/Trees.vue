@@ -98,3 +98,28 @@
     </g>
   </g>
 </template>
+
+<style lang="scss" scoped>
+@keyframes squash {
+  0% {
+    transform: skew(0deg);
+  }
+
+  50% {
+    transform: scale(0.99, 1) skew(7deg);
+  }
+
+  75% {
+    transform: scale(0.99, 1) skew(0deg);
+  }
+
+  100% {
+    transform: skew(0deg);
+  }
+}
+
+#trees g {
+  transform-origin: center;
+  animation: 4s squash infinite ease-in-out;
+}
+</style>

@@ -8,7 +8,7 @@ import { widgets } from "../store.js"
 import { Widget } from "../types"
 
 
-const { id, showForest = false } = defineProps({ id: Number, showForest: boolean })
+const { id, showForest = false } = defineProps({ id: Number, showForest: Boolean })
 
 const widget = computed(() => widgets.value.find(w => w.id === id))
 const title = computed(() => WIDGET_TEXT[widget.value.type].title(widget.value.amount))
@@ -50,9 +50,12 @@ header.widget-header {
     width: 40px;
     height: auto;
     margin-right: 12px;
+    z-index: 1;
   }
 
   .text-content {
+    z-index: 1;
+
     .subtext {
       font-size: var(--subtext-size);
       font-weight: var(--subtext-weight);
@@ -67,7 +70,11 @@ header.widget-header {
 
   .forest-animation {
     position: absolute;
-    top: -100%;
+    opacity: 0.25;
+    bottom: -14px;
+    left: 0;
+    right: 0;
+    z-index: 0;
   }
 }
 </style>

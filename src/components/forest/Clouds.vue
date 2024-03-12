@@ -14,3 +14,43 @@
       style="fill:#fff;fill-rule:nonzero;" />
   </g>
 </template>
+
+<style lang="scss" scoped>
+@keyframes float {
+  0% {
+    transform: translate(0%, 0%);
+  }
+
+  25% {
+    transform: translate(1%, -1%);
+  }
+
+  50% {
+    transform: translate(2%, 0%);
+  }
+
+  75% {
+    transform: translate(1%, 1%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+#clouds path {
+  animation: 8s float infinite ease-in-out;
+}
+
+#clouds path:nth-child(1) {
+  animation-delay: 500ms;
+}
+
+#clouds path:nth-child(2) {
+  animation-delay: 0;
+}
+
+#clouds path:nth-child(3) {
+  animation-delay: 1s;
+}
+</style>

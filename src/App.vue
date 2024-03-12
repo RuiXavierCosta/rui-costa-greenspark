@@ -18,11 +18,12 @@ const isProfile: boolean = window.location.pathname === '/profile'
 
   <main>
     <div class="widget-wrapper" v-for="widget in widgets" :key="widget.id">
-      <Widget :class="{ widget: !isProfile }" :id="widget.id" />
+      <Widget :class="{ widget: !isProfile }" :id="widget.id" :show-forest="isProfile" />
       <WidgetSettings v-if="!isProfile" :id="widget.id" />
     </div>
   </main>
-  <a v-if="!isProfile" class="floating-button" href="/profile" target="_blank">View Profile</a>
+  <a v-if="!isProfile" class="floating-button" href="/profile">View Profile</a>
+  <a v-else class="floating-button" href="/">Settings</a>
 </template>
 
 <style scoped lang="scss">
@@ -95,7 +96,9 @@ main {
   color: #2d2d2d;
   background-color: #47d18f;
   border: 2px solid transparent;
-  &:hover, &:focus {
+
+  &:hover,
+  &:focus {
     border-color: #3b755f;
   }
 
