@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { loadWidgets, widgets } from './store.js'
-import Widget from './components/Widget.vue'
+import WidgetDisplay from './components/WidgetDisplay.vue'
 import WidgetSettings from './components/WidgetSettings.vue'
 
 onMounted(loadWidgets)
 </script>
 
 <template>
-  <section class="background-wrapper">
+  <section>
     <header>
       <h3>Per product widgets</h3>
       <hr />
@@ -16,7 +16,7 @@ onMounted(loadWidgets)
 
     <main>
       <div class="widget-wrapper" v-for="widget in widgets" :key="widget.id">
-        <Widget class="widget" :id="widget.id" />
+        <WidgetDisplay class="widget" :id="widget.id" />
         <WidgetSettings :id="widget.id" />
       </div>
     </main>
@@ -28,6 +28,12 @@ section {
   padding: 36px;
   background: var(--color-background);
   border-radius: 8px;
+  box-shadow: var(--section-drop-shadow);
+  min-height: unset;
+
+  @media (min-width: 1024px) {
+    min-height: 420px;
+  }
 }
 
 header {
@@ -85,4 +91,4 @@ main {
     padding: 0;
   }
 }
-</style>
+</style>./components/WidgetDisplay.vue/index.js

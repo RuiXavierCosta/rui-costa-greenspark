@@ -75,6 +75,8 @@
   --input-inset-shadow-color: color-mix(in srgb, var(--gs-white-mute) 30%, transparent);
   --input-hover-shadow: color-mix(in srgb, var(--gs-green-soft) 50%, transparent);
   --input-active-color: var(--gs-green);
+
+  --section-drop-shadow: rgba(0, 0, 0, 0.1) 0px 40px 75px;
 }
 
 *,

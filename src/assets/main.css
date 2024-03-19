@@ -3,7 +3,7 @@
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 36px;
+  padding: 48px 22px;
   font-weight: normal;
 }
 
@@ -26,4 +26,22 @@ a {
     flex-direction: column;
     padding: 0 36px;
   }
+}
+
+.input-wrapper {
+  color: var(--color-text-alt);
+  border: none;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  position: relative;
+  margin: 0;
+  border: none;
+  cursor: pointer;
 }
