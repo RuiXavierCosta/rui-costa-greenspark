@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { computed, defineProps, defineModel } from "vue"
+import { computed, defineProps } from "vue"
 
 import { widgets, activateWidget } from "../store.js"
 
 const { id } = defineProps({ id: Number })
 const widget = computed(() => widgets.value.find(w => w.id === id))
-const model = defineModel()
 </script>
 
 <template>

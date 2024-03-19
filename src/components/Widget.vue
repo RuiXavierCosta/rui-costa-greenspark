@@ -3,12 +3,10 @@ import { computed, defineProps } from "vue"
 
 import { WIDGET_TEXT, WIDGET_TEXT_COLOR_CSS_VAR } from "../constants"
 import LogoIcon from "./icons/LogoIcon.vue"
-import Forest from "./forest/Forest.vue"
 import { widgets } from "../store.js"
-import { Widget } from "../types"
 
 
-const { id, showForest = false } = defineProps({ id: Number, showForest: Boolean })
+const { id } = defineProps({ id: Number })
 
 const widget = computed(() => widgets.value.find(w => w.id === id))
 const title = computed(() => WIDGET_TEXT[widget.value.type].title(widget.value.amount))
@@ -20,7 +18,6 @@ const subtitle = computed(() => WIDGET_TEXT[widget.value.type].subtitle)
     color: `var(--color-${WIDGET_TEXT_COLOR_CSS_VAR[widget.selectedColor]})`,
     backgroundColor: `var(--color-${widget.selectedColor})`
   }">
-    <Forest class="forest-animation" v-if="showForest" />
     <LogoIcon class="logo" :style="{ fill: `var(--color-${WIDGET_TEXT_COLOR_CSS_VAR[widget.selectedColor]})` }" />
     <div class="text-content">
       <p class="subtext">{{ subtitle }}</p>

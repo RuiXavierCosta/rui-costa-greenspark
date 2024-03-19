@@ -1,17 +1,17 @@
 :root {
   /* Colors */
   --gs-white: #ffffff;
-  --gs-white-soft: #F9F9F9;
-  --gs-white-mute: #B0B0B0;
+  --gs-white-soft: #f9f9f9;
+  --gs-white-mute: #b0b0b0;
 
   --gs-black: #212121;
 
-  --gs-blue: #2E3A8C;
-  
-  --gs-green: #3B755F;
-  --gs-green-soft: #AFC6BD;
-  
-  --gs-beige: #F2EBDB;
+  --gs-blue: #2e3a8c;
+
+  --gs-green: #3b755f;
+  --gs-green-soft: #afc6bd;
+
+  --gs-beige: #f2ebdb;
 
   /* Typography */
   --gs-title-font-size: 30px;
@@ -37,6 +37,7 @@
 :root {
   --color-background: var(--gs-white-soft);
   --color-background-mute: var(--gs-white-mute);
+  --color-background-flat: var(--gs-white);
 
   --color-background-accent-1: var(--gs-blue);
   --color-background-accent-2: var(--gs-green);
@@ -58,7 +59,6 @@
   --color-white: var(--gs-white);
   --color-black: var(--gs-black);
 
-  
   --title-size: var(--gs-title-font-size);
   --title-weight: var(--gs-title-font-weight);
   --subtitle-size: var(--gs-subtitle-font-size);
@@ -69,9 +69,9 @@
   --subtext-weight: var(--gs-subtext-font-weight);
   --anchor-size: var(--gs-anchor-font-size);
   --anchor-weight: var(--gs-anchor-font-weight);
-  
+
   --border-radius: var(--gs-border-radius);
-  
+
   --input-inset-shadow-color: color-mix(in srgb, var(--gs-white-mute) 30%, transparent);
   --input-hover-shadow: color-mix(in srgb, var(--gs-green-soft) 50%, transparent);
   --input-active-color: var(--gs-green);
@@ -88,17 +88,17 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: var(--color-background-flat);
   transition:
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
   font-size: var(--text-size);
-  font-family: "Cabin", sans-serif;
+  font-family: 'Cabin', sans-serif;
   font-optical-sizing: auto;
   font-weight: var(--text-weight);
   font-style: normal;
-  font-variation-settings: "wdth" 100;
+  font-variation-settings: 'wdth' 100;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
