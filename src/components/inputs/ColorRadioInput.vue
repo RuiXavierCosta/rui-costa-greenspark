@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from "vue"
 
-const { name, modelChecked, colors } = defineProps<{
+const { name, modelValue, colors, disabled } = defineProps<{
   name?: string,
-  modelChecked: string,
+  modelValue?: string,
   colors: string[],
+  disabled?: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: "change", value: string): void
+  (e: "update:modelValue", value: string): void
 }>()
 </script>
 
@@ -16,8 +17,9 @@ const emit = defineEmits<{
   <div class="input-wrapper">
     <slot></slot>
     <fieldset class="badge-colour-selection">
-      <input v-for="color in colors" :checked="modelChecked === color" type="radio"
-        @change="emit('change', ($event.target as HTMLInputElement).value)" :value="color" :name="name" :key="color" />
+      <input v-for="color in colors" :checked="modelValue === color" type="radio"
+        @change="emit('update:modelValue', ($event.target as HTMLInputElement).value)" :value="color" :name="name"
+        :key="color" :disabled="disabled" />
     </fieldset>
   </div>
 </template>
@@ -37,6 +39,10 @@ input[type="radio"] {
 
   &:checked {
     border: 1.5px solid var(--color-border-grey)
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 
   &[value="blue"] {

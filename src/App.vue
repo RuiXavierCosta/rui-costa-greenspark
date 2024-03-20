@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { loadWidgets, widgets } from './store.js'
-import WidgetDisplay from './components/WidgetDisplay.vue'
-import WidgetSettings from './components/WidgetSettings.vue'
 
+import { loadWidgets, state } from '@/store.js'
+import WidgetDisplay from '@/components/WidgetDisplay.vue'
+import WidgetSettings from '@/components/WidgetSettings.vue'
+
+import type { WidgetColors } from "./types"
+
+const loadingWidgetColors: WidgetColors[] = ["beige", "green", "blue"]
 onMounted(loadWidgets)
 </script>
 
@@ -15,10 +19,18 @@ onMounted(loadWidgets)
     </header>
 
     <main>
-      <div class="widget-wrapper" v-for="widget in widgets" :key="widget.id">
-        <WidgetDisplay class="widget" :id="widget.id" />
-        <WidgetSettings :id="widget.id" />
-      </div>
+      <template v-if="state.isLoading">
+        <div class="widget-wrapper" v-for="color in loadingWidgetColors" :key="color">
+          <WidgetDisplay class="widget" :placeholderColor="color" />
+          <WidgetSettings />
+        </div>
+      </template>
+      <template v-else>
+        <div class="widget-wrapper" v-for="widget in state.widgets" :key="widget.id">
+          <WidgetDisplay class="widget" :id="widget.id" />
+          <WidgetSettings :id="widget.id + 234" />
+        </div>
+      </template>
     </main>
   </section>
 </template>

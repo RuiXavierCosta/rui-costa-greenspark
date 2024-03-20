@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from "vue"
 
-const { id, name, modelValue } = defineProps<{
+const { id, name, modelValue, disabled } = defineProps<{
   id?: string,
   name?: string,
   modelValue: boolean,
+  disabled?: boolean,
 }>()
 
 const emit = defineEmits<{
-  (e: "change", value: boolean): void
+  (e: "update:modelValue", value: boolean): void
 }>()
 </script>
 
@@ -16,8 +17,8 @@ const emit = defineEmits<{
   <div class="input-wrapper">
     <slot></slot>
     <input :id="id" :name="name" :checked="modelValue"
-      @change="emit('change', Boolean(($event.target as HTMLInputElement).value))" class="checkbox-input"
-      type="checkbox" />
+      @change="el => emit('update:modelValue', (el.target as HTMLInputElement).checked)" class="checkbox-input"
+      type="checkbox" :disabled="disabled" />
   </div>
 </template>
 
@@ -28,7 +29,7 @@ input[type="checkbox"].checkbox-input {
   place-content: center;
   z-index: 0;
 
-  &:hover::after {
+  &:hover:not(:disabled)::after {
     background-color: var(--input-hover-shadow);
   }
 

@@ -1,25 +1,55 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue"
-import ToggleInput from "./inputs/ToggleInput.vue";
-import CheckboxInput from "./inputs/CheckboxInput.vue";
-import ColorRadioInput from "./inputs/ColorRadioInput.vue";
-import FloatingTooltip from "./FloatingTooltip.vue";
 
-import { widgets, activateWidget } from "../store.js"
+import ToggleInput from "@/components/inputs/ToggleInput.vue";
+import CheckboxInput from "@/components/inputs/CheckboxInput.vue";
+import ColorRadioInput from "@/components/inputs/ColorRadioInput.vue";
+import FloatingTooltip from "@/components/FloatingTooltip.vue";
+import { state, activateWidget } from "@/store.js"
 
-const { id } = defineProps({ id: Number })
-const widget = computed(() => widgets.value.find(w => w.id === id))
+
+const { id } = defineProps<{ id?: number }>()
+const widget = state.widgets.find(w => w.id === id)
+const isLinked = computed({
+  get() {
+    if (!widget) return false
+    return widget.linked
+  },
+  set(value) {
+    if (widget) widget.linked = value
+  }
+})
+
+const selectedColor = computed({
+  get() {
+    if (!widget || !id) return "blue"
+    return widget.selectedColor
+  },
+  set(value) {
+    if (widget) widget.selectedColor = value
+  }
+})
+
+const isActive = computed({
+  get() {
+    if (!widget || !id) return false
+    return widget.active
+  },
+  set(value) {
+    if (widget && id && value) activateWidget(id)
+  }
+})
 const availableColors = ["blue", "green", "beige", "white", "black"]
 </script>
 
 <template>
   <div class="settings">
-    <CheckboxInput :name="`link-to-public-${id}`" v-model="widget.linked">
+    <CheckboxInput :disabled="!widget" :name="`link-to-public-${id}`" v-model="isLinked">
       <span class="tooltip-wrapper">
         Link to Public Profile
         <img class="tooltip-trigger"
           alt="This widget links directly to your public profile so that you can easily share your impact with your customers. Turn it off here if you do not want the badge to link to it."
-          src="../assets/info_tooltip.svg" />
+          src="@/assets/info_tooltip.svg" />
         <FloatingTooltip>
           <p>This widget links directly to your public profile so that you can easily share your impact with your
             customers. Turn it off here if you do not want the badge to link to it.</p>
@@ -29,14 +59,13 @@ const availableColors = ["blue", "green", "beige", "white", "black"]
     </CheckboxInput>
 
     <div class="setting">
-      <ColorRadioInput :modelChecked="widget.selectedColor" @change="(value) => widget.selectedColor = value"
-        :name="`badge-colour-${id}`" :colors="availableColors">
+      <ColorRadioInput :disabled="!widget" v-model="selectedColor" :name="`badge-colour-${id}`"
+        :colors="availableColors">
         <span>Badge colour</span>
       </ColorRadioInput>
     </div>
 
-    <ToggleInput :name="`link-to-public-${id}`" :modelChecked="widget.active"
-      @change="(v) => v && activateWidget(widget.id)">
+    <ToggleInput :disabled="!widget" :name="`link-to-public-${id}`" v-model="isActive">
       <span>Activate badge</span>
     </ToggleInput>
   </div>

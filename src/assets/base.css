@@ -77,6 +77,9 @@
   --input-active-color: var(--gs-green);
 
   --section-drop-shadow: rgba(0, 0, 0, 0.1) 0px 40px 75px;
+
+  --loading-color-bright: var(--gs-white-soft);
+  --loading-color-mute: var(--gs-white-mute);
 }
 
 *,

@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from "vue"
 
-const { id, name, modelChecked } = defineProps<{
+const { id, name, modelValue } = defineProps<{
   id?: string,
   name?: string,
-  modelChecked: boolean,
+  modelValue: boolean,
+  disabled?: boolean,
 }>()
 
 const emit = defineEmits<{
-  (e: "change", value: boolean): void
+  (e: "update:modelValue", value: boolean): void
 }>()
 </script>
 
 <template>
   <div class="input-wrapper">
     <slot></slot>
-    <input :id="id" :name="name" :checked="modelChecked"
-      @change="emit('change', Boolean(($event.target as HTMLInputElement).value))" class="toggle-input"
-      type="checkbox" />
+    <input :id="id" :name="name" :checked="modelValue"
+      @change="emit('update:modelValue', ($event.target as HTMLInputElement).checked)" class="toggle-input"
+      type="checkbox" :disabled="disabled" />
   </div>
 </template>
 
@@ -70,7 +71,7 @@ input[type="checkbox"].toggle-input {
   --shadow-displacement-left: calc((var(--border-width) * -1) - ((var(--shadow-size) - var(--nob-size)) / 2));
   --shadow-displacement-right: calc(100% - var(--border-width) - (var(--shadow-size) / 2));
 
-  &:hover::after {
+  &:not(:disabled):hover::after {
     background-color: var(--input-hover-shadow);
   }
 
