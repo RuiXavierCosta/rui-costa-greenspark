@@ -16,22 +16,22 @@ export const activateWidget = (id: number): void => {
   })
 }
 
-export const loadWidgets = async () => {
+export const loadWidgets = async (): Promise<Widget[] | { error: string }> => {
   isLoading.value = true
   // fetch widget info for current user
   try {
     const resp = await fetch('https://api.mocki.io/v2/016d11e8/product-widgets')
     if (resp.status >= 300) {
-      // TODO: Add error handling
       widgetData.value = []
-      return
+      const error = JSON.parse(await resp.text())
+      return { error: error.message ?? error }
     }
 
     widgetData.value = await resp.json()
+    return widgetData.value
   } catch (error) {
-    console.log('ffff', error)
+    return { error: `${error}` }
   } finally {
     isLoading.value = false
-    // isLoading.value = false
   }
 }

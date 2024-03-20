@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { loadWidgets, state } from '@/store.js'
 import WidgetDisplay from '@/components/WidgetDisplay.vue'
@@ -8,7 +8,12 @@ import WidgetSettings from '@/components/WidgetSettings.vue'
 import type { WidgetColors } from "./types"
 
 const loadingWidgetColors: WidgetColors[] = ["beige", "green", "blue"]
-onMounted(loadWidgets)
+const errorFeedback = ref("")
+onMounted(async () => {
+  loadWidgets().then((data) => {
+    if ("error" in data) errorFeedback.value = data.error ?? ""
+  })
+})
 </script>
 
 <template>
@@ -16,10 +21,11 @@ onMounted(loadWidgets)
     <header>
       <h3>Per product widgets</h3>
       <hr />
+      <h4 v-if="errorFeedback">{{ errorFeedback }}</h4>
     </header>
 
     <main>
-      <template v-if="state.isLoading">
+      <template v-if="state.isLoading || errorFeedback">
         <div class="widget-wrapper" v-for="color in loadingWidgetColors" :key="color">
           <WidgetDisplay class="widget" :placeholderColor="color" />
           <WidgetSettings />
@@ -53,10 +59,14 @@ header {
   margin-bottom: 20px;
 
   h3 {
-    font-weight: bold;
     font-size: var(--title-size);
     font-weight: var(--title-weight);
     margin-bottom: 12px;
+  }
+
+  h4 {
+    font-size: var(--subtitle-size);
+    font-weight: var(--subtitle-weight);
   }
 
   hr {
