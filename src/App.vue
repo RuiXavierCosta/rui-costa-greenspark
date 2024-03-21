@@ -34,7 +34,7 @@ onMounted(async () => {
       <template v-else>
         <div class="widget-wrapper" v-for="widget in state.widgets" :key="widget.id">
           <WidgetDisplay class="widget" :id="widget.id" />
-          <WidgetSettings :id="widget.id + 234" />
+          <WidgetSettings :id="widget.id" />
         </div>
       </template>
     </main>
@@ -113,4 +113,4 @@ main {
     padding: 0;
   }
 }
-</style>./components/WidgetDisplay.vue/index.js
+</style>

@@ -32,9 +32,6 @@ input[type="radio"] {
   width: 16px;
   height: 16px;
   border-color: transparent;
-
-  width: 16px;
-  height: 16px;
   transition: 200ms border-color;
 
   &:checked {
